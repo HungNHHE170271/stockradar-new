@@ -5,11 +5,10 @@ export const metadata = {
   title: "Stock Radar",
   description: "Đầu tư thông minh với Stock Radar",
   icons: {
-    icon: "/favicon.png",      // favicon chính
-    shortcut: "/favicon.png",  // fallback
-    apple: "/logo.png",        // cho iOS
+    icon: "/favicon.ico",
   },
 };
+
 
 export default function RootLayout({
   children,
