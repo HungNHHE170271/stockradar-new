@@ -1,11 +1,15 @@
 import type { Metadata } from 'next'
 import './globals.css'
 
-export const metadata: Metadata = {
-  title: 'Stock Radar',
-  description: 'Created with HH',
-  generator: 'HoangHung.dev',
-}
+export const metadata = {
+  title: "Stock Radar",
+  description: "Đầu tư thông minh với Stock Radar",
+  icons: {
+    icon: "/favicon.png",      // favicon chính
+    shortcut: "/favicon.png",  // fallback
+    apple: "/logo.png",        // cho iOS
+  },
+};
 
 export default function RootLayout({
   children,
@@ -18,3 +22,5 @@ export default function RootLayout({
     </html>
   )
 }
+
+
