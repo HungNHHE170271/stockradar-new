@@ -1136,7 +1136,7 @@ export default function FPTDashboard() {
                         </div>
                         <div className="flex justify-between">
                           <span>Green IT</span>
-                          <span className="font-semibold">80%</span>
+                          <span className="font-semibold">85%</span>
                         </div>
                       </div>
                     </CardContent>
