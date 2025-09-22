@@ -1,16 +1,27 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { BarChart3, MessageSquare, ThumbsUp, TrendingUp, Users, Hash, Send } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Textarea } from "@/components/ui/textarea"
-import { Badge } from "@/components/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { useState } from "react";
+import Link from "next/link";
+import { BarChart3, MessageSquare, ThumbsUp, TrendingUp, Users, Hash, Send } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useRequireAuth } from "@/hooks/use-require-auth";
 
 export default function CommunityPage() {
-  const [newPost, setNewPost] = useState("")
+  // Ép đăng nhập
+  const { checking } = useRequireAuth("/login");
+  const [newPost, setNewPost] = useState("");
+
+  if (checking) {
+    return (
+      <div className="min-h-screen grid place-items-center text-gray-500 text-sm">
+        Đang kiểm tra đăng nhập…
+      </div>
+    );
+  }
 
   const posts = [
     {
@@ -48,7 +59,7 @@ export default function CommunityPage() {
       comments: 8,
       reputation: 78,
     },
-  ]
+  ];
 
   const trendingTags = [
     { tag: "VNM", posts: 45, change: "+12%" },
@@ -56,14 +67,14 @@ export default function CommunityPage() {
     { tag: "VCB", posts: 32, change: "+5%" },
     { tag: "HPG", posts: 28, change: "+15%" },
     { tag: "TCB", posts: 24, change: "+3%" },
-  ]
+  ];
 
   const topUsers = [
     { name: "StockMaster", reputation: 1250, posts: 156 },
     { name: "MarketGuru", reputation: 1180, posts: 142 },
     { name: "TradingPro", reputation: 1050, posts: 128 },
     { name: "InvestWise", reputation: 980, posts: 115 },
-  ]
+  ];
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -219,9 +230,7 @@ export default function CommunityPage() {
                               {post.comments}
                             </Button>
                           </div>
-                          <Button variant="ghost" size="sm">
-                            Chia sẻ
-                          </Button>
+                          <Button variant="ghost" size="sm">Chia sẻ</Button>
                         </div>
                       </div>
                     </CardContent>
@@ -306,5 +315,5 @@ export default function CommunityPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

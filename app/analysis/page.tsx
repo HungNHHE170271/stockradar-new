@@ -1,88 +1,97 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { BarChart3, TrendingUp, TrendingDown, DollarSign, PieChart, LineChart, Lock } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import Link from "next/link";
+import { BarChart3, TrendingUp, TrendingDown, DollarSign, PieChart, LineChart, Lock } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useRequireAuth } from "@/hooks/use-require-auth";
 
 export default function AnalysisPage() {
-  const freeAnalysis = [
-  {
-    symbol: "VNM",
-    name: "Vinamilk",
-    sector: "Thực phẩm",
-    recommendation: "Mua",
-    targetPrice: "95,000",
-    currentPrice: "85,500",
-    upside: "+11.1%",
-    summary:
-      "Công ty dẫn đầu ngành sữa Việt Nam với thị phần ổn định và kế hoạch mở rộng ra nước ngoài.",
-  },
-  {
-    symbol: "FPT",
-    name: "FPT Corporation",
-    sector: "Công nghệ",
-    recommendation: "Nắm giữ",
-    targetPrice: "150,000",
-    currentPrice: "142,000",
-    upside: "+5.6%",
-    summary: "Tăng trưởng ổn định trong mảng công nghệ thông tin và giáo dục.",
-  },
-  {
-    symbol: "HPG",
-    name: "Hòa Phát Group",
-    sector: "Thép",
-    recommendation: "Mua",
-    targetPrice: "35,000",
-    currentPrice: "31,000",
-    upside: "+12.9%",
-    summary:
-      "Doanh nghiệp thép hàng đầu Việt Nam với lợi thế quy mô, thị phần lớn và triển vọng phục hồi nhu cầu xây dựng.",
-  },
-]
+  // Ép đăng nhập
+  const { checking } = useRequireAuth("/login");
+  if (checking) {
+    return (
+      <div className="min-h-screen grid place-items-center text-gray-500 text-sm">
+        Đang kiểm tra đăng nhập…
+      </div>
+    );
+  }
 
+  const freeAnalysis = [
+    {
+      symbol: "VNM",
+      name: "Vinamilk",
+      sector: "Thực phẩm",
+      recommendation: "Mua",
+      targetPrice: "95,000",
+      currentPrice: "85,500",
+      upside: "+11.1%",
+      summary:
+        "Công ty dẫn đầu ngành sữa Việt Nam với thị phần ổn định và kế hoạch mở rộng ra nước ngoài.",
+    },
+    {
+      symbol: "FPT",
+      name: "FPT Corporation",
+      sector: "Công nghệ",
+      recommendation: "Nắm giữ",
+      targetPrice: "150,000",
+      currentPrice: "142,000",
+      upside: "+5.6%",
+      summary: "Tăng trưởng ổn định trong mảng công nghệ thông tin và giáo dục.",
+    },
+    {
+      symbol: "HPG",
+      name: "Hòa Phát Group",
+      sector: "Thép",
+      recommendation: "Mua",
+      targetPrice: "35,000",
+      currentPrice: "31,000",
+      upside: "+12.9%",
+      summary:
+        "Doanh nghiệp thép hàng đầu Việt Nam với lợi thế quy mô, thị phần lớn và triển vọng phục hồi nhu cầu xây dựng.",
+    },
+  ];
 
   const premiumAnalysis = [
-  {
-    symbol: "MSN",
-    name: "Masan Group",
-    sector: "Tiêu dùng",
-    recommendation: "Mua mạnh",
-    targetPrice: "180,000",
-    currentPrice: "156,000",
-    upside: "+15.4%",
-    pe: "12.5x",
-    roe: "18.2%",
-    debt: "45%",
-  },
-  {
-    symbol: "VHM",
-    name: "Vinhomes",
-    sector: "Bất động sản",
-    recommendation: "Mua",
-    targetPrice: "85,000",
-    currentPrice: "78,500",
-    upside: "+8.3%",
-    pe: "8.9x",
-    roe: "22.1%",
-    debt: "38%",
-  },
-  {
-    symbol: "HPG",
-    name: "Hòa Phát Group",
-    sector: "Thép",
-    recommendation: "Mua",
-    targetPrice: "35,000",
-    currentPrice: "31,000",
-    upside: "+12.9%",
-    pe: "10.2x",
-    roe: "16.5%",
-    debt: "40%",
-  },
-]
-
+    {
+      symbol: "MSN",
+      name: "Masan Group",
+      sector: "Tiêu dùng",
+      recommendation: "Mua mạnh",
+      targetPrice: "180,000",
+      currentPrice: "156,000",
+      upside: "+15.4%",
+      pe: "12.5x",
+      roe: "18.2%",
+      debt: "45%",
+    },
+    {
+      symbol: "VHM",
+      name: "Vinhomes",
+      sector: "Bất động sản",
+      recommendation: "Mua",
+      targetPrice: "85,000",
+      currentPrice: "78,500",
+      upside: "+8.3%",
+      pe: "8.9x",
+      roe: "22.1%",
+      debt: "38%",
+    },
+    {
+      symbol: "HPG",
+      name: "Hòa Phát Group",
+      sector: "Thép",
+      recommendation: "Mua",
+      targetPrice: "35,000",
+      currentPrice: "31,000",
+      upside: "+12.9%",
+      pe: "10.2x",
+      roe: "16.5%",
+      debt: "40%",
+    },
+  ];
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -184,52 +193,49 @@ export default function AnalysisPage() {
             <TabsContent value="free" className="space-y-4">
               <div className="grid gap-6 lg:grid-cols-2">
                 {freeAnalysis.map((analysis) => (
-  <Card key={analysis.symbol}>
-    <CardHeader>
-      <div className="flex justify-between items-start">
-        <div>
-          <CardTitle className="flex items-center gap-2">
-            {analysis.name}
-            <Badge variant="outline">{analysis.symbol}</Badge>
-          </CardTitle>
-          <CardDescription>{analysis.sector}</CardDescription>
-        </div>
-        <Badge
-          variant={analysis.recommendation === "Mua" ? "default" : "secondary"}
-          className={analysis.recommendation === "Mua" ? "bg-green-600" : ""}
-        >
-          {analysis.recommendation}
-        </Badge>
-      </div>
-    </CardHeader>
-    <CardContent className="space-y-4">
-      <div className="grid grid-cols-3 gap-4 text-center">
-        <div>
-          <p className="text-sm text-gray-500">Giá hiện tại</p>
-          <p className="font-bold">{analysis.currentPrice}</p>
-        </div>
-        <div>
-          <p className="text-sm text-gray-500">Mục tiêu</p>
-          <p className="font-bold">{analysis.targetPrice}</p>
-        </div>
-        <div>
-          <p className="text-sm text-gray-500">Upside</p>
-          <p className="font-bold text-green-600">{analysis.upside}</p>
-        </div>
-      </div>
-      <div>
-        <p className="text-sm font-medium mb-2">Tóm tắt phân tích:</p>
-        <p className="text-sm text-gray-600">{analysis.summary}</p>
-      </div>
-      <Button asChild className="w-full bg-transparent" variant="outline">
-        <Link href={`/analysis/${analysis.symbol.toLowerCase()}`}>
-          Xem báo cáo đầy đủ
-        </Link>
-      </Button>
-    </CardContent>
-  </Card>
-))}
-
+                  <Card key={analysis.symbol}>
+                    <CardHeader>
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <CardTitle className="flex items-center gap-2">
+                            {analysis.name}
+                            <Badge variant="outline">{analysis.symbol}</Badge>
+                          </CardTitle>
+                          <CardDescription>{analysis.sector}</CardDescription>
+                        </div>
+                        <Badge
+                          variant={analysis.recommendation === "Mua" ? "default" : "secondary"}
+                          className={analysis.recommendation === "Mua" ? "bg-green-600" : ""}
+                        >
+                          {analysis.recommendation}
+                        </Badge>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="grid grid-cols-3 gap-4 text-center">
+                        <div>
+                          <p className="text-sm text-gray-500">Giá hiện tại</p>
+                          <p className="font-bold">{analysis.currentPrice}</p>
+                        </div>
+                        <div>
+                          <p className="text-sm text-gray-500">Mục tiêu</p>
+                          <p className="font-bold">{analysis.targetPrice}</p>
+                        </div>
+                        <div>
+                          <p className="text-sm text-gray-500">Upside</p>
+                          <p className="font-bold text-green-600">{analysis.upside}</p>
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium mb-2">Tóm tắt phân tích:</p>
+                        <p className="text-sm text-gray-600">{analysis.summary}</p>
+                      </div>
+                      <Button asChild className="w-full bg-transparent" variant="outline">
+                        <Link href={`/analysis/${analysis.symbol.toLowerCase()}`}>Xem báo cáo đầy đủ</Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
             </TabsContent>
 
@@ -358,5 +364,5 @@ export default function AnalysisPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
